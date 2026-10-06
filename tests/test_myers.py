@@ -22,7 +22,7 @@ def lcs_len(a, b):
 
 
 def check(test, a, b):
-    da, ib = myers.diff_flags(a, b)
+    da, ib = myers.find_edits(a, b)
     ka = [x for x, f in zip(a, da) if not f]
     kb = [x for x, f in zip(b, ib) if not f]
     test.assertEqual(ka, kb)
@@ -32,7 +32,7 @@ def check(test, a, b):
 class DiffFlags(unittest.TestCase):
     def test_paper_example(self):
         a, b = list("abcabba"), list("cbabac")
-        da, ib = myers.diff_flags(a, b)
+        da, ib = myers.find_edits(a, b)
         self.assertEqual(sum(da) + sum(ib), 5)
         check(self, a, b)
 
